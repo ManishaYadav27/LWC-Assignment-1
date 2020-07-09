@@ -1,0 +1,43 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-col design_col">
+            <lightning-card title="Account Search">
+                <lightning-layout multiple-rows="true" vertical-align="stretch">
+                    <lightning-layout-item size="8" padding="around-small">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning-input type="text" label="Account Name" onchange={handleAccountName}>
+                                </lightning-input> <br />
+                                <lightning-input type="Number" label="Number of Records" onchange={handleQueryLimit}>
+                                </lightning-input><br />
+                                <lightning-button label="Search" variant="brand" onclick={searchAccounts}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-card>
+        </div>
+        <div class="slds-col design_col">
+            <div>
+                <lightning-input name="FilterKey" label="Filter" onchange={handleFilterData}></lightning-input> <br/>
+                <lightning-button label="Filter" variant="brand" onclick={filterAccounts}></lightning-button>
+            </div>
+            <br/>
+            <br/>
+            <div >
+                <template if:true={filterCopy}>
+                    <template for:each={filterCopy} for:item="account">
+                        <lightning-card key={account.Id} title={account.Name} >
+                            <div>
+                                Id- {account.Id} <br />
+                                Contact Number-{account.Phone}<br />
+                                Type-{account.Type}<br />
+                            </div>
+                        </lightning-card>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>
